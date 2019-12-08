@@ -1,0 +1,101 @@
+/*package whatever //do not write package name here */
+import java.util.*;
+import java.io.*;
+
+class GFG {
+    static Map<String,Set<Company>> map = 
+         new HashMap<String,Set<Company>>();
+    
+    
+	public static void main (String[] args) {
+	    System.out.println(map);
+	    Company c1= new Company("C1",23.21);
+	    Company c2= new Company("C2",22.22);
+	    Company c3= new Company("C1",24.14);
+	    Company c4= new Company("C4",21.27);
+	    Company c5= new Company("C3",12.21);
+	    Company c6= new Company("C2",20.23);
+	    Company c7= new Company("C4",25.20);
+	    Company c8= new Company("C1",28.19);
+	    Company c9= new Company("C3",21.17);
+	    Company c10= new Company("C4",24.15);
+	    Company c11= new Company("C2",15.23);
+	    
+	    add("Sector A",c2);
+	    add("Sector A",c1);
+	    add("Sector A",c1);
+	    add("Sector A",c11);
+	    add("Sector A",c8);
+	    /*add("Sector A",c2);add("Sector B",c2);
+	    add("Sector A",c3);add("Sector B",c4);
+	    add("Sector A",c4);add("Sector B",c5);
+	    add("Sector A",c5);add("Sector B",c3);
+	    add("Sector A",c6);add("Sector B",c7);
+	    add("Sector A",c7);add("Sector B",c6);
+	    add("Sector A",c8);add("Sector B",c3);
+	    add("Sector A",c9);add("Sector B",c7);
+	    add("Sector A",c10);add("Sector B",c8);
+	    add("Sector A",c11);add("Sector B",c9);
+	    add("Sector B",c10);add("Sector B",c11);*/
+	    
+	    System.out.println(map);
+	    Set set1 = map.get("Sector A");
+	    Collections.sort(set1);
+	    
+	    Iterator setIter = set1.iterator();
+	    while(setIter.hasNext()){
+	       System.out.println(setIter.next());
+	       break;
+	    }
+	    
+	}
+	static void add(String sector ,Company c){
+	    if(map.get(sector)!=null){
+	        Set<Company> set = map.get(sector);
+	        set.add(c);
+	    }else{
+	        Set<Company> set = new HashSet<Company>();
+	        set.add(c);
+	        map.put(sector,set);
+	    }
+	    
+	}
+}
+
+class Company implements Comparable<Company>{
+    String cname;
+    double price;
+    
+    Company(String name){
+        this.cname = name;
+    }
+    Company(String name, double price){
+        this.cname = name;
+        this.price = price;
+    }
+    
+
+    public boolean equals(Object obj){
+        Company company = (Company) obj;
+        if(this.cname.equals(company.cname) && this.price==company.price)
+            return true;
+        else 
+            return false;
+    }
+
+    
+    public int compareTo(Company c){
+        if(this.price==c.price)
+            return 0;
+        else if(this.price < c.price)
+            return -1;
+        else 
+            return 1;
+    }
+    public String toString(){
+        return "["+this.cname +","+this.price+"]";
+    }
+    public int hashCode(){
+        return (int) (this.price *19);
+    }
+}
