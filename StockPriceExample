@@ -39,15 +39,40 @@ class GFG {
 	    add("Sector A",c11);add("Sector B",c9);
 	    add("Sector B",c10);add("Sector B",c11);
 	    add("Sector B",c12);
+	    System.out.println(map);
 	    
 	    List<Company> listA = map.get("Sector A");
 	    Collections.sort(listA);
-	    System.out.println("Sector A - Higest stock price for today is : company :"+listA.get(0).cname + " , "+listA.get(0).price);
+	    double priceAhigest = listA.get(0).price;
+	    String chnameA = listA.get(0).cname;
+	    String companyListA = chnameA;
+	    for(int i=0;i<listA.size();i++){
+	        Company company = listA.get(i);
+	        if(company.price==priceAhigest){
+	            if(!company.cname.equals(chnameA))
+	            companyListA= companyListA + "," +company.cname;
+	        }
+	        else
+	            break;
+	    }
+	    System.out.println("Sector A - Higest stock price for companies are  :"+companyListA + " : "+priceAhigest);
 	    
 	    List<Company> listB = map.get("Sector B");
 	    Collections.sort(listB);
-	    System.out.println("Sector B - Higest stock price for today is : company :"+listB.get(0).cname + " , "+listB.get(0).price);
-	    
+        double priceBhigest = listB.get(0).price;
+        String chnameB = listB.get(0).cname;
+	    String companyListB = chnameB;
+	    for(int i=0;i<listB.size();i++){
+	        Company company = listB.get(i);
+	        if(company.price==priceBhigest){
+	            if(!company.cname.equals(chnameB))
+	            companyListB= companyListB + "," +company.cname;
+	        }
+	        else
+	            break;
+	    }
+	    System.out.println("Sector A - Higest stock price for companies are  :"+companyListB + " - "+priceBhigest);
+	    	    
 	    
 	}
 	static void add(String sector ,Company c){
