@@ -26,7 +26,7 @@ class GFG {
 	    add("Sector A",c1);
 	    add("Sector A",c11);
 	    add("Sector A",c8);
-	    /*add("Sector A",c2);add("Sector B",c2);
+	    add("Sector A",c2);add("Sector B",c2);
 	    add("Sector A",c3);add("Sector B",c4);
 	    add("Sector A",c4);add("Sector B",c5);
 	    add("Sector A",c5);add("Sector B",c3);
@@ -34,19 +34,23 @@ class GFG {
 	    add("Sector A",c7);add("Sector B",c6);
 	    add("Sector A",c8);add("Sector B",c3);
 	    add("Sector A",c9);add("Sector B",c7);
-	    add("Sector A",c10);add("Sector B",c8);
+	    add("Sector A",c10);add("Sector B",c7);
 	    add("Sector A",c11);add("Sector B",c9);
-	    add("Sector B",c10);add("Sector B",c11);*/
+	    add("Sector B",c10);add("Sector B",c11);
 	    
 	    System.out.println(map);
-	    Set set1 = map.get("Sector A");
-	    Collections.sort(set1);
+	    Set setA = map.get("Sector A");
+	    List<Company> listA = new ArrayList<Company>();
+	    listA.addAll(setA);
+	    Collections.sort(listA);
+	    System.out.println(listA.get(0));
 	    
-	    Iterator setIter = set1.iterator();
-	    while(setIter.hasNext()){
-	       System.out.println(setIter.next());
-	       break;
-	    }
+	    Set setB = map.get("Sector B");
+	    List<Company> listB = new ArrayList<Company>();
+	    listB.addAll(setB);
+	    Collections.sort(listB);
+	    System.out.println(listB.get(0));
+	    
 	    
 	}
 	static void add(String sector ,Company c){
@@ -88,9 +92,9 @@ class Company implements Comparable<Company>{
         if(this.price==c.price)
             return 0;
         else if(this.price < c.price)
-            return -1;
-        else 
             return 1;
+        else 
+            return -1;
     }
     public String toString(){
         return "["+this.cname +","+this.price+"]";
