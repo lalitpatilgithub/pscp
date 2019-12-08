@@ -3,8 +3,8 @@ import java.util.*;
 import java.io.*;
 
 class GFG {
-    static Map<String,Set<Company>> map = 
-         new HashMap<String,Set<Company>>();
+    static Map<String,List<Company>> map = 
+         new HashMap<String,List<Company>>();
     
     
 	public static void main (String[] args) {
@@ -20,6 +20,7 @@ class GFG {
 	    Company c9= new Company("C3",21.17);
 	    Company c10= new Company("C4",24.15);
 	    Company c11= new Company("C2",15.23);
+	    Company c12 = new Company("C1",25.20);
 	    
 	    add("Sector A",c2);
 	    add("Sector A",c1);
@@ -37,30 +38,26 @@ class GFG {
 	    add("Sector A",c10);add("Sector B",c7);
 	    add("Sector A",c11);add("Sector B",c9);
 	    add("Sector B",c10);add("Sector B",c11);
+	    add("Sector B",c12);
 	    
-	    System.out.println(map);
-	    Set setA = map.get("Sector A");
-	    List<Company> listA = new ArrayList<Company>();
-	    listA.addAll(setA);
+	    List<Company> listA = map.get("Sector A");
 	    Collections.sort(listA);
-	    System.out.println(listA.get(0));
+	    System.out.println("Sector A - Higest stock price for today is : company :"+listA.get(0).cname + " , "+listA.get(0).price);
 	    
-	    Set setB = map.get("Sector B");
-	    List<Company> listB = new ArrayList<Company>();
-	    listB.addAll(setB);
+	    List<Company> listB = map.get("Sector B");
 	    Collections.sort(listB);
-	    System.out.println(listB.get(0));
+	    System.out.println("Sector B - Higest stock price for today is : company :"+listB.get(0).cname + " , "+listB.get(0).price);
 	    
 	    
 	}
 	static void add(String sector ,Company c){
 	    if(map.get(sector)!=null){
-	        Set<Company> set = map.get(sector);
-	        set.add(c);
+	        List<Company> list = map.get(sector);
+	        list.add(c);
 	    }else{
-	        Set<Company> set = new HashSet<Company>();
-	        set.add(c);
-	        map.put(sector,set);
+	        List<Company> list = new ArrayList<Company>();
+	        list.add(c);
+	        map.put(sector,list);
 	    }
 	    
 	}
